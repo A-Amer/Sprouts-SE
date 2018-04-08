@@ -59,18 +59,12 @@
                 var row = btn[0].parentNode.parentNode;
                 row.parentNode.removeChild(row);
             }
-
-            function createSchedule()
-            {
-                var inputvalue=new Date();
-                var table = document.getElementById("sundayTable");
-                var parentArray = [];
+            function slotDetails(day,table,childArray){
                 var rowsCount = table.rows.length; 
-                var sundayRows=rowsCount-2;
-                var childArray = [];
+                var inputvalue=new Date();
                 if(rowsCount>2)
                 {
-                    childArray.push("sunday");
+                    childArray.push(day);
                 }
                 for (i = 2; i < rowsCount; i++) {
                     var inputs = table.rows.item(i).getElementsByTagName("input");
@@ -81,301 +75,81 @@
                         var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds
                         if(inputvalue ==""){
                             alert('Please enter the time in slots');
-                            return;
+                            return true;
                         }
                         else if(!stime)//check if the time is undefined or nan or null or false value
                         {
                             alert('Please enter a valid time slot');
-                            return;
+                            return true;
                         }
                         else if(stime<32400||stime>72000){
                             alert("please enter valid time from 9 to 20");
-                            return;
+                            return true;
                         }
                         else{
                             if(j==1&&stime<stime1)
                             {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
+                                alert('Start time must be before end time');
+                                return true;
                             }
                             if(j==1 && stime-stime1<3600)
                             {
                                 alert('The minimum time of slot is one hour');
-                                return;
+                                return true;
                             }
                             childArray.push(inputvalue);
                             var stime1=stime;//check if the first time is true
                         }
+                    }
+                    if(inputs[inputLength-1]==""){
+                        alert('Enter course name');
+                        return true;
                     }
                     var course=inputs[2].value;
                     childArray.push(course);			
                 }
+            }
+            function createSchedule()
+            {
+                var childArray = [];
+                var parentArray = [];
+                var checkInalid;
+                var numOfSlots;
+                var table = document.getElementById("sundayTable");
+                numOfSlots=table.rows.length-2;
+                checkInalid=slotDetails("sunday",table,childArray);
+                
                 table=document.getElementById("mondayTable");
-                var rowsCount=table.rows.length;
-                var mondayRows=rowsCount-2;
-                if(rowsCount>2)
-                {childArray.push("monday");}
-                for (i = 2; i < rowsCount; i++) {
-                    var inputs = table.rows.item(i).getElementsByTagName("input");
-                    var inputLength = inputs.length;
-                    for (var j = 0; j < inputLength-1; j++) {
-                        var inputvalue = inputs[j].value;
-                        var t = inputvalue.split(':');
-                        var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds			
-                        if(inputvalue ==""){
-                            alert('Please enter the time in slots');
-                            return;
-                        }
-                        else if(!stime)//check if the time is undefined or nan or null or false value
-                        {
-                            alert('Please enter a valid time slot');
-                            return;
-                        }
-                        else if(stime<32400||stime>72000){
-                            alert("please enter valid time from 9 to 20");
-                            return;
-                        }
-                        else{
-                            if(j==1&&stime<stime1)
-                            {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
-                            }
-                            if(j==1 && stime-stime1<3600)
-                            {
-                                alert('The minimum time of slot is one hour');
-                                return;
-                            }
-                            childArray.push(inputvalue);
-                            var stime1=stime;//check if the first time is true
-                        }
-                    }
-                    var course=inputs[2].value;
-                    childArray.push(course);
-                }
+                numOfSlots+=table.rows.length-2;
+                checkInalid|=slotDetails("monday",table,childArray);
+               
                 table=document.getElementById("tuesdayTable");
-                var rowsCount=table.rows.length;
-                var tuesdayRows=rowsCount-2;
-                if(rowsCount>2)
-                {childArray.push("tuesday");}
-                for (i = 2; i < rowsCount; i++) {
-                    var inputs = table.rows.item(i).getElementsByTagName("input");
-                    var inputLength = inputs.length;
-                    for (var j = 0; j < inputLength-1; j++) {
-                        var inputvalue = inputs[j].value;
-                        var t = inputvalue.split(':');
-                        var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds			
-                        if(inputvalue ==""){
-                            alert('Please enter the time in slots');
-                            return;
-                        }
-                        else if(!stime)//check if the time is undefined or nan or null or false value
-                        {
-                            alert('Please enter a valid time slot');
-                            return;
-                        }
-                        else if(stime<32400||stime>72000){
-                            alert("please enter valid time from 9 to 20");
-                            return;
-                        }
-                        else{
-                            if(j==1&&stime<stime1)
-                            {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
-                            }
-                            if(j==1 && stime-stime1<3600)
-                            {
-                                alert('The minimum time of slot is one hour');  
-                                return;
-                            }
-                            childArray.push(inputvalue);
-                            var stime1=stime;//check if the first time is true
-                        }
-                    }
-                    var course=inputs[2].value;
-                    childArray.push(course);
-                }
+                numOfSlots+=table.rows.length-2;
+                checkInalid|=slotDetails("tuesday",table,childArray);
+                
                 table=document.getElementById("wednesdayTable");
-                var rowsCount=table.rows.length;
-                var wednesdayRows=rowsCount-2;
-                if(rowsCount>2)
-                {childArray.push("wednesday");}
-                for (i = 2; i < rowsCount; i++) {
-                    var inputs = table.rows.item(i).getElementsByTagName("input");
-                    var inputLength = inputs.length;
-                    for (var j = 0; j < inputLength-1; j++) {
-                        var inputvalue = inputs[j].value;
-                        var t = inputvalue.split(':');		
-                        var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds		
-                        if(inputvalue ==""){
-                            alert('Please enter the time in slots');
-                            return;
-                        }
-                        else if(!stime)//check if the time is undefined or nan or null or false value
-                        {
-                            alert('Please enter a valid time slot');
-                            return;
-                        }
-                        else if(stime<32400||stime>72000){
-                            alert("please enter valid time from 9 to 20");
-                            return;
-                        }
-                        else{
-                            if(j==1&&stime<stime1)
-                            {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
-                            }
-                            if(j==1 && stime-stime1<3600)
-                            {
-                                alert('The minimum time of slot is one hour');
-                                return;
-                            }
-                            childArray.push(inputvalue);
-                            var stime1=stime;//check if the first time is true
-                        }
-                    }
-                    var course=inputs[2].value;
-                    childArray.push(course);
-                }
+                numOfSlots+=table.rows.length-2;
+                checkInalid|=slotDetails("wednesday",table,childArray);
+                
                 table=document.getElementById("thursdayTable");
-                var rowsCount=table.rows.length;
-                var thursdayRows=rowsCount-2;
-                if(rowsCount>2)
-                {childArray.push("thursday");}
-                for (i = 2; i < rowsCount; i++) {
-                    var inputs = table.rows.item(i).getElementsByTagName("input");
-                    var inputLength = inputs.length;
-                    for (var j = 0; j < inputLength-1; j++) {
-                        var inputvalue = inputs[j].value;
-                        var t = inputvalue.split(':');			
-                        var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds			
-                        if(inputvalue ==""){
-                            alert('Please enter the time in slots');
-                            return;
-                        }
-                        else if(!stime)//check if the time is undefined or nan or null or false value
-                        {
-                            alert('Please enter a valid time slot');
-                            return;
-                        }
-                        else if(stime<32400||stime>72000){
-                            alert("please enter valid time from 9 to 20");
-                            return;
-                        }
-                        else{
-                            if(j==1&&stime<stime1)
-                            {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
-                            }
-                            if(j==1 && stime-stime1<3600)
-                            {
-                                alert('The minimum time of slot is one hour');
-                                return;
-                            }
-                            childArray.push(inputvalue);
-                            var stime1=stime;//check if the first time is true
-                        }
-                    }
-                    var course=inputs[2].value;
-                    childArray.push(course);
-                }
+                numOfSlots+=table.rows.length-2;
+                checkInalid|=slotDetails("thursday",table,childArray);
+                
                 table=document.getElementById("fridayTable");
-                var rowsCount=table.rows.length;
-                var fridayRows=rowsCount-2;
-                if(rowsCount>2)
-                {childArray.push("friday");}
-                for (i = 2; i < rowsCount; i++) {
-                    var inputs = table.rows.item(i).getElementsByTagName("input");
-                    var inputLength = inputs.length;
-                    for (var j = 0; j < inputLength-1; j++) {
-                        var inputvalue = inputs[j].value;
-                        var t = inputvalue.split(':');		
-                        var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds		
-                        if(inputvalue ==""){
-                            alert('Please enter the time in slots');
-                            return;
-                        }
-                        else if(!stime)//check if the time is undefined or nan or null or false value
-                        {
-                            alert('Please enter a valid time slot');
-                            return;
-                        }
-                        else if(stime<32400||stime>72000){
-                            alert("please enter valid time from 9 to 20");
-                            return;
-                        }
-                        else{
-                            if(j==1&&stime<stime1)
-                            {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
-                            }
-                            if(j==1 && stime-stime1<3600)
-                            {
-                                alert('The minimum time of slot is one hour');
-                                return;
-                            }
-                            childArray.push(inputvalue);
-                            var stime1=stime;//check if the first time is true
-                        }
-                    }
-                    var course=inputs[2].value;
-                    childArray.push(course);
-                }
+                numOfSlots+=table.rows.length-2;
+                checkInalid|=slotDetails("friday",table,childArray);
+               
                 table=document.getElementById("saturdayTable");
-                var rowsCount=table.rows.length;
-                var saturdayRows=rowsCount-2;
-                if(rowsCount>2)
-                {childArray.push("saturday");}
-                for (i = 2; i < rowsCount; i++) {
-                    var inputs = table.rows.item(i).getElementsByTagName("input");
-                    var inputLength = inputs.length;
-                    for (var j = 0; j < inputLength-1; j++) {
-                        var inputvalue = inputs[j].value;
-                        var t = inputvalue.split(':');
-                        var stime = (+t[0]) * 60 * 60 + (+t[1]) * 60; //calculate the time in seconds
-                        if(inputvalue ==""){
-                            alert('Please enter the time in slots');
-                            return;
-                        }
-                        else if(!stime)//check if the time is undefined or nan or null or false value
-                        {
-                            alert('Please enter a valid time slot');
-                            return;
-                        }
-                        else if(stime<32400||stime>72000){
-                            alert("please enter valid time from 9 to 20");
-                            return;
-                        }
-                        else{
-                            if(j==1&&stime<stime1)
-                            {
-                                alert('You must enter the start time then end time not the opposite');
-                                return;
-                            }
-                            if(j==1 && stime-stime1<3600)
-                            {
-                                alert('The minimum time of slot is one hour');
-                                return;
-                            }
-                            childArray.push(inputvalue);
-                            var stime1=stime;//check if the first time is true
-                        }
-                    }
-                    var course=inputs[2].value;
-                    childArray.push(course);
-                }
+                numOfSlots+=table.rows.length-2;
+                checkInalid|=slotDetails("saturday",table,childArray);
+                if(checkInalid)
+                    return;
                 parentArray.push(childArray);
-                //alert(parentArray);
                 $.ajax(
                         {
                             url: 'Create_Slots.php',
                     type: 'post',
-                    data: {data:childArray,sundayRows:sundayRows,mondayRows:mondayRows,tuesdayRows:tuesdayRows,
-                        wednesdayRows:wednesdayRows,thursdayRows:thursdayRows,fridayRows:fridayRows,saturdayRows:saturdayRows},
+                    data: {data:childArray,numOfSlots:numOfSlots},
                     dataType:'text',
                     success: function (response) {
                         alert(response);
@@ -417,7 +191,7 @@
                 <div class="row">
                     <div class="col-md-offset-6 col-md-6 col-sm-offset-6 col-sm-6">
                         <h2>Welcome <?php echo $_SESSION['username']; ?> to</h2>
-                        <h1>Learn Centric <strong>Education Center</strong></h1>
+                        <h1>Sprouts <strong>Education Center</strong></h1>
                     </div>
                 </div>
             </div>
@@ -518,7 +292,7 @@
                     <div class="tab-pane fade"  id="Notifications">
                         <div class="form-group">
                             <label for="comment">Announcements:</label>
-                            <form action= "/PostAnnouncements.php" method="post" role="form">
+                            <form action= "PostAnnouncements.php" method="post" role="form">
                                 <textarea class="form-control" rows="5" name="notification" id="notification"></textarea>
                         </div> 
                         <div class="col-md-2 col-sm-2">
@@ -550,7 +324,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <h2>Add Instructor</h2>
                                     </div>
-                                    <form action="/Add_Instructor.php" method="post" role="form">
+                                    <form action="Add_Instructor.php" method="post" role="form">
                                         <div class="col-md-1 col-sm-1"></div>
                                         <div class="col-md-10 col-sm-10">
                                             <div class="col-md-6 col-sm-6">
@@ -595,7 +369,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <h2>Remove Instructor</h2>
                                     </div>
-                                    <form action="/Remove_Instructor.php" method="post" role="form">
+                                    <form action="Remove_Instructor.php" method="post" role="form">
                                         <div class="col-md-1 col-sm-1"></div>
                                         <div class="col-md-10 col-sm-10">
                                             <div class="col-md-10 col-sm-10">
@@ -620,7 +394,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <h2>Add Administrator</h2>
                                     </div>
-                                    <form action="/Add_Admin.php" method="post" role="form">
+                                    <form action="Add_Admin.php" method="post" role="form">
                                         <div class="col-md-1 col-sm-1"></div>
                                         <div class="col-md-10 col-sm-10">
                                             <div class="col-md-6 col-sm-6">
@@ -653,7 +427,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <h2>Change Password</h2>
                                     </div>
-                                    <form action="/Change_Pass.php" method="post" role="form">
+                                    <form action="Change_pass.php" method="post" role="form">
                                         <div class="col-md-1 col-sm-1"></div>
                                         <div class="col-md-10 col-sm-10">
                                             <div class="col-md-6 col-sm-6">
@@ -693,68 +467,8 @@
                 </div>
             </div>
             
-            <!-- footer section -->
-            <footer>
-                <div id="Contact">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <h2>Our Office</h2>
-                                <p>3 Nawal st Dokki,Giza,Egypt</p>
-                                <p>Email: <span>Learn_Centric@hotmail.com</span></p>
-                                <p>Phone: <span>01111688661</span></p>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <h2>Social Us</h2>
-                                <ul class="social-icons">
-                                    <li><a href="https://www.facebook.com/Learn-Centric-260821564385169/" target="_blank" class="fa fa-facebook"></a></li>
-                                    <li><a href="https://www.instagram.com/accounts/login/" target="_blank" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            
-            <!-- divider section -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-1 col-sm-1"></div>
-                    <div class="col-md-10 col-sm-10">
-                        <hr>
-                    </div>
-                    <div class="col-md-1 col-sm-1"></div>
-                </div>
-            </div>
-            
-            <!-- copyright section -->
-            <div class="copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <p>
-                                Copyright &copy; 2018 Sprouts
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- scrolltop section -->
-            <a href="#top" class="go-top"><i class="fa fa-angle-up"></i></a>
-            
-            
-            <!-- javascript js -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/jquery.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/nivo-lightbox.min.js"></script>
-            <script src="js/smoothscroll.js"></script>
-            <script src="js/jquery.nav.js"></script>
-            <script src="js/isotope.js"></script>
-            <script src="js/imagesloaded.min.js"></script>
-            <script src="js/custom.js"></script>
-            
     </body>
 </html>
+<?php
+    include 'footer.php';
+?>
