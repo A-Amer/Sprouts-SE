@@ -21,8 +21,6 @@
     $result = mysqli_query($con,"SELECT ID FROM users WHERE email = '".$Email."';");
     $row = mysqli_fetch_array($result);
     $ID = $row[0];
-    $sql = "INSERT INTO student_courses (studentID, courseID) VALUES ('".$ID."','".$courseID."');";
-    $result = $con->query($sql);
     $sql = "INSERT INTO student_schedule (studentID, courseID,day,startTime,endTime) VALUES ('".$ID."','".$courseID."','".$day."','".$startTime."','".$endTime."');";
     $result = $con->query($sql);
 ?>
