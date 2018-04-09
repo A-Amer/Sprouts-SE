@@ -1,0 +1,44 @@
+Orphange Organization
+Sprouts
+Version 1.0
+
+New Features
+1.Add Adminstrators
+2.Add Instructor
+3.Change login password for all priviliges
+4.Enroll in a speific course
+5.Admin Functionalities as Adding instructors, removing instructors, displaying schedules
+6.Insert schedule slots
+7.Getting a user name 
+8.Login
+9.Sign up
+10.Student schedule
+11.Home page
+ 
+Removed Features 
+No removed features yet
+
+Enhanced Performance
+First Release
+
+Enhanced Look-and-Feel
+First Release
+
+Unsupported Functionality
+1.View grades for specific course.
+2.View notifications sent by the instructor
+3.View notifications sent by the instructor.
+4.View student’s attendance for each course.
+5.Post notifications for group of students or for a specific student.
+6.Post assignments their deadline and method of submission.
+7.Post and edit grades of students.
+8.Remove students from the course.
+9.Download materials.
+10.Upload materials.
+11.Download donation list.
+12.Post announcemets.
+13.Donate.
+
+
+Fixed Bugs
+First Release
