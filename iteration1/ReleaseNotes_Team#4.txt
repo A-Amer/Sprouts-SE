@@ -4,16 +4,17 @@ Version 1.0
 
 New Features
 1.Add Adminstrators
-2.Add Instructor
+2.Add Instructor(Volunter)
 3.Change login password for all priviliges
 4.Enroll in a speific course
 5.Admin Functionalities as Adding instructors, removing instructors, displaying schedules
 6.Insert schedule slots
 7.Getting a user name 
-8.Login
-9.Sign up
+8.Login for all priviliges
+9.Register a student
 10.Student schedule
 11.Home page
+
  
 Removed Features 
 No removed features yet
