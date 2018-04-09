@@ -1,6 +1,6 @@
 Orphange Organization
 Sprouts
-Version 1.0
+Version 1.1
 
 New Features
 1.Add Adminstrators
@@ -29,7 +29,7 @@ Unsupported Functionality
 1.View grades for specific course.
 2.View notifications sent by the instructor
 3.View notifications sent by the instructor.
-4.View student’s attendance for each course.
+4.View studentâ€™s attendance for each course.
 5.Post notifications for group of students or for a specific student.
 6.Post assignments their deadline and method of submission.
 7.Post and edit grades of students.
