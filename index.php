@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+         <script>
+            function viewAnnouncements() {
+                var ann_div = $('#ann');
+                $.ajax({
+                    type: 'GET',
+                    url: 'viewAnnouncements.php',
+                    success: function (html) {
+                        ann_div.html(html);
+                    }
+                });
+            }
+            
+
+
+       </script>
+        <script type="text/javascript">
+        function setDate() {
+                var today = new Date();
+                var nextyear = new Date();
+                var dd = today.getDate()+1;
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+                var yyyynext = today.getFullYear()+1;
+                 if(dd<10){
+                        dd='0'+dd
+                    } 
+                    if(mm<10){
+                        mm='0'+mm
+                    } 
+                nextyear=yyyynext+'-'+mm+'-'+dd;
+                today = yyyy+'-'+mm+'-'+dd;
+                document.getElementById("date").setAttribute("min", today);
+                document.getElementById("date").setAttribute("max", nextyear);
+                
+        }
+        window.onload = setDate;
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         
         <meta charset="utf-8">
@@ -20,7 +56,13 @@
         <link rel="stylesheet" href="css/style.css">
         
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700' rel='stylesheet' type='text/css'>
-        
+        <style>
+            table, th, td {
+                 border-spacing: 30px;
+                 padding:0 15px 0 15px;
+            }
+           
+        </style>
     </head>
     <body data-spy="scroll" data-target=".navbar-collapse">
         
@@ -37,9 +79,10 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#service" class="smoothScroll">ABOUT</a></li>
-                        <li><a href="#AllAnnoucements" onload="viewAnnouncements()" class="smoothScroll">ANNOUNCEMENTS</a></li>
-                        <li><a href="#SignUp" class="smoothScroll">SIGNUP</a></li>
+                        
+                        <li><a href="#AllAnnoucements" onclick="viewAnnouncements()" class="smoothScroll">ANNOUNCEMENTS</a></li>
+                        <li><a href="#Donation" class="smoothScroll">DONATE</a></li>
+                        <li><a href="#SignUP" class="smoothScroll">SIGNUP</a></li>                       
                         <li><a href="#Contact" class="smoothScroll">CONTACT US</a></li>
                         <li>
                             <form action="login.php" method="post" role="form">
@@ -113,14 +156,15 @@
             </div>
         </div>
         
-        
-        <div id="AllAnnoucements">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <h2>Announcements</h2>
+       <div  id="viewAnnoucements">
+            <div id="AllAnnoucements">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <center><h2>Announcements</h2></center>
+                        </div>
+                        <div id="ann"></div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -135,8 +179,54 @@
                 <div class="col-md-1 col-sm-1"></div>
             </div>
         </div>
+        
+           <div id="SignUp">
+               <div id="Donation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <h2>Donate</h2>
+                    </div>
+                    <form action="Donate.php" method="post" role="form">
+                        <div class="col-md-1 col-sm-1"></div>
+                        <div class="col-md-10 col-sm-10">
+                            <div class="col-md-6 col-sm-6">
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <input name="address" type="text" class="form-control" id="address" placeholder="Collection Address" required>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <input name="tele" type="number" class="form-control" size="11" id="tele" placeholder="Telephone" required>
+                            </div> 
+                            <div class="col-md-6 col-sm-6">
+                                <input name="date" type="date" class="form-control" min='2018-05-01' max="2019-05-01" id="date"  required>
+                            </div>
+                           <!-- <div class="col-md-6 col-sm-6">
+                                 <input name="time" type="time" class="form-control" id="time" min="10:00" max="18:00" required>
+                            </div> -->
+                            <div class="col-md-4 col-sm-4">
+                                <input name="submit" type="submit" class="form-control" id="submit" value="Donate">
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </form>
+                </div>
+            </div>
+               </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-sm-1"></div>
+                <div class="col-md-10 col-sm-10">
+                    <hr>
+                </div>
+                <div class="col-md-1 col-sm-1"></div>
+            </div>
+        </div>
         <!--SignUp-->
         <div id="SignUp">
+            <div id="SignUP">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -164,6 +254,7 @@
                         <div class="col-md-1 col-sm-1"></div>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
         
