@@ -21,7 +21,12 @@
         <link rel="stylesheet" href="css/style.css">
         <!-- google web font css -->
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700' rel='stylesheet' type='text/css'>
-            
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                padding:0 15px 0 15px;
+            }
+        </style>
         <script>
             
             
@@ -119,7 +124,8 @@
                 <ul class="nav nav-pills nav-justified">
                     <li><a href="#ISchedule" data-toggle="tab" onclick="viewInstSchedule()">My Schedule</a></li>
                     <li><a href="#Notifications " data-toggle="tab">Send Notifications</a></li>
-                    <li><a href="#Assignments " data-toggle="tab">Post Assignments</a></li>
+                    <li><a href="#Assignments " data-toggle="tab">Upload Material</a></li>
+                    <li><a href="#EditClassDetails " data-toggle="tab">Edit Class Description</a></li>
                     <li><a href="#ViewSchedule " data-toggle="tab" onclick= "DispCenSchedule()">Center's Schedule</a></li>
                     <li><a href="#ChangePassword " data-toggle="tab">Change Password</a></li>
                                     
@@ -128,22 +134,109 @@
                 <div class="tab-content">
                     
                     <div class="tab-pane fade" id="ISchedule">
-                        <div id="myschedule">                    
+                        <div id="SignUp">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <h2>
+                                            <center>My Schedule</center>
+                                        </h2>
+                                    </div>
+                                    <div id="myschedule">                    
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                                 
                     <div class="tab-pane fade"  id="Notifications">
-                        <div class="form-group">
-                            <label for="comment">Notifications:</label>	
+                        <div id="SignUp">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <center><h2>Add Notification</h2></center>
+                                    </div>
+                                    <form action="SendNotification.php" method="post" role="form">
+                                        <div class="col-md-1 col-sm-1"></div>
+                                        <div class="col-md-10 col-sm-10">
+                                            <div class="col-md-10 col-sm-10">
+                                                <input name="notification" class="form-control" id="notification" placeholder="Enter Notification" required>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2">
+                                                <input name="submit" type="submit" class="form-control" id="submit" value="ADD">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1"></div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade"  id="Assignments">
+                        <div id="SignUp">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <center><h2>Upload Material</h2></center>
+                                    </div>
+                                    <form action="uploadFile.php" method='post' enctype="multipart/form-data" role="form">
+                                        <div class="col-md-1 col-sm-1"></div>
+                                        <div class="col-md-10 col-sm-10">
+                                            <div class="col-md-10 col-sm-10">
+                                                <input name="desc" class="form-control" id="desc" placeholder="Enter Description of File" required>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2">
+                                                <input type="submit" name="submit" class="form-control" id="submit"  value="Upload">
+                                            </div>
+                                            <div class="col-md-2 col-sm-2">
+                                                <input type="file"  name="fileToUpload" id="fileToUpload" required>
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-1 col-sm-1"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tab-pane fade"  id="ViewSchedule">
-                                <center><div id="cenSchedule">
-                                            
-                            </div></center>
+                    <div class="tab-pane fade"  id="EditClassDetails">
+                        <div id="SignUp">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <center><h2>Edit Class Description</h2></center>
+                                    </div>
+                                    <form action="EditClassInst.php" method="post" role="form">
+                                        <div class="col-md-1 col-sm-1"></div>
+                                        <div class="col-md-10 col-sm-10">
+                                            <div class="col-md-10 col-sm-10">
+                                                <input name="desc" class="form-control" id="desc" placeholder="Enter New Description" required>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2">
+                                                <input name="submit" type="submit" class="form-control" id="submit" value="Edit">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="tab-pane fade" id="ViewSchedule">
+                        <div id="SignUp">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <h2>
+                                            <center>Center Schedule</center>
+                                        </h2>
+                                    </div>
+                                    <div id="cenSchedule">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>              
                                     
                     <div class="tab-pane fade " id="ChangePassword">
                         <!--SignUp-->
