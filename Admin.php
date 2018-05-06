@@ -293,7 +293,7 @@
                         <div class="form-group">
                             <label for="comment">Announcements:</label>
                             <form action= "PostAnnouncements.php" method="post" role="form">
-                                <textarea class="form-control" rows="5" name="notification" id="notification"></textarea>
+                                <textarea class="form-control" rows="5" name="notification" id="notification" required></textarea>
                         </div> 
                         <div class="col-md-2 col-sm-2">
                             <input name="submit" type="submit" class="form-control" id="submit" value="Add Announcement">
