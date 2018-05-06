@@ -65,7 +65,7 @@
     $result = $con->query($sql);
 
 
-    if ($result->num_rows > 0) {
+    if ($result && $result->num_rows > 0) {
             echo "<font size='4'><center><table><tr><th>CourseName</th><th>CourseID</th><th>CourseDescription</th><th>day</th><th>StartTime</th><th>EndTime</th><th>State</th></tr>";
             // output data of each row
             while($row = $result->fetch_assoc()) {
