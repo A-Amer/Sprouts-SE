@@ -197,7 +197,7 @@
                                 <input name="address" type="text" class="form-control" id="address" placeholder="Collection Address" required>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <input name="tele" type="number" class="form-control" size="11" id="tele" placeholder="Telephone" required>
+                               <input name="tele" type="tel" pattern='\d{11}' class="form-control" size="11" id="tele" placeholder="Telephone" required>
                             </div> 
                             <div class="col-md-6 col-sm-6">
                                 <input name="date" type="date" class="form-control" min='2018-05-01' max="2019-05-01" id="date"  required>
